@@ -15,6 +15,7 @@
 		9CE33F1C24516FBF00CECE74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CE33F1B24516FBF00CECE74 /* Assets.xcassets */; };
 		9CE33F1F24516FBF00CECE74 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CE33F1D24516FBF00CECE74 /* LaunchScreen.storyboard */; };
 		9CE33F2E24518A6300CECE74 /* dataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9CE33F2C24518A6300CECE74 /* dataModel.xcdatamodeld */; };
+		9CE33F302451ACD400CECE74 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE33F2F2451ACD400CECE74 /* CategoryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		9CE33F1E24516FBF00CECE74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9CE33F2024516FBF00CECE74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9CE33F2D24518A6300CECE74 /* dataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = dataModel.xcdatamodel; sourceTree = "<group>"; };
+		9CE33F2F2451ACD400CECE74 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 		9CE33F2924517C8F00CECE74 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9CE33F2F2451ACD400CECE74 /* CategoryViewController.swift */,
 				9CE33F1324516FBA00CECE74 /* TodoListViewController.swift */,
 			);
 			path = controllers;
@@ -180,6 +183,7 @@
 				9CE33F1424516FBA00CECE74 /* TodoListViewController.swift in Sources */,
 				9CE33F1A24516FBA00CECE74 /* Todaey.xcdatamodeld in Sources */,
 				9CE33F1024516FBA00CECE74 /* AppDelegate.swift in Sources */,
+				9CE33F302451ACD400CECE74 /* CategoryViewController.swift in Sources */,
 				9CE33F1224516FBA00CECE74 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

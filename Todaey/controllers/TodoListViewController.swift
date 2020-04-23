@@ -13,6 +13,13 @@ class TodoListViewController: UITableViewController {
     
     var ArrayList = [Item]()
    // let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
+    
+    var selectedCategory : Category? {
+        didSet{
+            loadItems()
+        }
+    }
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     //let defaults = UserDefaults.standard
 
@@ -24,7 +31,7 @@ class TodoListViewController: UITableViewController {
         
       //  print(dataFilePath)
 
-        loadItems()
+      //  loadItems()
         
 //        let newItem = Item()
 //        newItem.title = "Swapnil"
@@ -106,6 +113,7 @@ class TodoListViewController: UITableViewController {
             let newItem = Item(context: self.context)
             newItem.title = textField.text!
             newItem.done = false
+            newItem.parentCategory = self.selectedCategory
             self.ArrayList.append(newItem)
             
             //self.ArrayList.append(textField.text!)
@@ -142,8 +150,20 @@ class TodoListViewController: UITableViewController {
 //        }
     }
     
-    func loadItems(with request : NSFetchRequest<Item> = Item.fetchRequest()) {
+    func loadItems(with request : NSFetchRequest<Item> = Item.fetchRequest(), predicate : NSPredicate? = nil) {
         //let request : NSFetchRequest<Item> = Item.fetchRequest()
+        
+        let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
+       
+        if let additionalPredicate = predicate {
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, additionalPredicate])
+        }else {
+            request.predicate = categoryPredicate
+        }
+        
+//        let compundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate , predicate!])
+//
+//         request.predicate = compundPredicate
         do {
             ArrayList = try context.fetch(request)
         }catch{
@@ -171,7 +191,7 @@ extension TodoListViewController: UISearchBarDelegate {
 
         let request : NSFetchRequest<Item> = Item.fetchRequest()
         
-        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+        let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
         
          request.sortDescriptors  = [NSSortDescriptor(key: "title", ascending: true)]
         
@@ -180,7 +200,8 @@ extension TodoListViewController: UISearchBarDelegate {
 //        } catch {
 //            print("Error fetching data from contetx \(error)")
 //        }
-        loadItems(with: request)
+        loadItems(with: request, predicate: predicate)
+       // loadItems(with: request)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
