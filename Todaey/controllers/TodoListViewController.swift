@@ -16,7 +16,7 @@ class TodoListViewController: UITableViewController {
     
     var selectedCategory : Category? {
         didSet{
-            loadItems()
+           // loadItems()
         }
     }
     
@@ -110,11 +110,11 @@ class TodoListViewController: UITableViewController {
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
     
             
-            let newItem = Item(context: self.context)
-            newItem.title = textField.text!
-            newItem.done = false
-            newItem.parentCategory = self.selectedCategory
-            self.ArrayList.append(newItem)
+//            let newItem = Item(context: self.context)
+//            newItem.title = textField.text!
+//            newItem.done = false
+//            newItem.parentCategory = self.selectedCategory
+//            self.ArrayList.append(newItem)
             
             //self.ArrayList.append(textField.text!)
             //self.defaults.set(self.ArrayList, forKey: "TodoListArray")
@@ -150,69 +150,69 @@ class TodoListViewController: UITableViewController {
 //        }
     }
     
-    func loadItems(with request : NSFetchRequest<Item> = Item.fetchRequest(), predicate : NSPredicate? = nil) {
-        //let request : NSFetchRequest<Item> = Item.fetchRequest()
-        
-        let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
-       
-        if let additionalPredicate = predicate {
-            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, additionalPredicate])
-        }else {
-            request.predicate = categoryPredicate
-        }
-        
-//        let compundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate , predicate!])
+//    func loadItems(with request : NSFetchRequest<Item> = Item.fetchRequest(), predicate : NSPredicate? = nil) {
+//        //let request : NSFetchRequest<Item> = Item.fetchRequest()
 //
-//         request.predicate = compundPredicate
-        do {
-            ArrayList = try context.fetch(request)
-        }catch{
-            print("Error Loading Item \(error)")
-        }
-        
-        tableView.reloadData()
-        
-//        if let data = try? Data(contentsOf: dataFilePath!){
+//        let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
 //
-//           let decoder = PropertyListDecoder()
-//           do {
-//            ArrayList = try decoder.decode([Item].self, from: data)
-//               try data.write(to: dataFilePath!)
-//           }catch {
-//               print("Error encoding data \(error)")
-//           }
-//       }
- }
-    
-}
-
-extension TodoListViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-
-        let request : NSFetchRequest<Item> = Item.fetchRequest()
-        
-        let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
-        
-         request.sortDescriptors  = [NSSortDescriptor(key: "title", ascending: true)]
-        
-//        do {
-//            ArrayList = try context.fetch (request)
-//        } catch {
-//            print("Error fetching data from contetx \(error)")
+//        if let additionalPredicate = predicate {
+//            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, additionalPredicate])
+//        }else {
+//            request.predicate = categoryPredicate
 //        }
-        loadItems(with: request, predicate: predicate)
-       // loadItems(with: request)
-    }
+//
+////        let compundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate , predicate!])
+////
+////         request.predicate = compundPredicate
+//        do {
+//            ArrayList = try context.fetch(request)
+//        }catch{
+//            print("Error Loading Item \(error)")
+//        }
+//
+//        tableView.reloadData()
+//
+////        if let data = try? Data(contentsOf: dataFilePath!){
+////
+////           let decoder = PropertyListDecoder()
+////           do {
+////            ArrayList = try decoder.decode([Item].self, from: data)
+////               try data.write(to: dataFilePath!)
+////           }catch {
+////               print("Error encoding data \(error)")
+////           }
+////       }
+// }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchBar.text?.count == 0{
-            loadItems()
-            DispatchQueue.main.async {
-                searchBar.resignFirstResponder()
-            }
-        }
-    }
 }
 
-
-
+//extension TodoListViewController: UISearchBarDelegate {
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//
+//        let request : NSFetchRequest<Item> = Item.fetchRequest()
+//
+//        let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+//
+//         request.sortDescriptors  = [NSSortDescriptor(key: "title", ascending: true)]
+//
+////        do {
+////            ArrayList = try context.fetch (request)
+////        } catch {
+////            print("Error fetching data from contetx \(error)")
+////        }
+//        loadItems(with: request, predicate: predicate)
+//       // loadItems(with: request)
+//    }
+//
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        if searchBar.text?.count == 0{
+//            loadItems()
+//            DispatchQueue.main.async {
+//                searchBar.resignFirstResponder()
+//            }
+//        }
+//    }
+//}
+//
+//
+//
