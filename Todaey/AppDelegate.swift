@@ -18,14 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        print(Realm.Configuration.defaultConfiguration.fileURL)
+       // print(Realm.Configuration.defaultConfiguration.fileURL)
         
 //        let data = Data()
 //        data.name = "Swapnil"
 //        data.age = 26
         
         do{
-            let realm = try Realm()
+            _ = try Realm()
 //            try realm.write {
 //                realm.add(data)
 //            }
